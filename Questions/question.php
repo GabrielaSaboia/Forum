@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     if(empty($name)){
         $nameError = 'Please enter a name.';
     }else if(strlen($name) < 3){
-        $nameErrorTwo= 'Name must be at least 3 characters long.';
+        $nameError= 'Name must be at least 3 characters long.';
     }
     //Checking Body content
     if(empty($body)){
@@ -28,5 +28,10 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 ?>
 
 <html>
-
+<div> Name: <?php if(!$nameError) echo $name;?>
+<span><?php echo $nameError;?></span></div>
+<div>Body: <?php if(!$bodyError) echo $body;?>
+    <span><?php echo $bodyError;?></span></div>
+<div>Skills: <?php if(!$skillError) echo $skills;?>
+    <span><?php echo $skillError;?></span></div>
 </html>
