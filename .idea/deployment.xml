@@ -5,7 +5,7 @@
       <paths name="NJIT AFS">
         <serverdata>
           <mappings>
-            <mapping deploy="/login/index.html" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/Project1" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

@@ -3,7 +3,7 @@ $name = filter_input(INPUT_POST, 'questionName');
 $body = filter_input(INPUT_POST, 'body');
 $skills= filter_input(INPUT_POST, 'skills');
 
-$skillCheck = strpos($skills, ',');
+$skillCheck = explode(',', $skills);
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     //Checking name input
@@ -15,14 +15,14 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     //Checking Body content
     if(empty($body)){
         $bodyError = 'Please enter text.';
-    }else if(strlen($body)>500){
+    }else if(strlen($body) < 500){
         $bodyError ='Text must be shorter than 500 characters.';
     }
     //Checking skills section
     if(empty($skills)){
-    $skillError = 'Please add a skill.';
-    }else if($skillCheck === false){
-     $skillError = 'Please enter more skills.';
+        $skillError = 'Please add a skill.';
+    }else if(count($skillCheck) < 2){
+        $skillError = 'Please add another skill.';
     }
 }
 ?>
@@ -32,6 +32,6 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 <span><?php echo $nameError;?></span></div>
 <div>Body: <?php if(!$bodyError) echo $body;?>
     <span><?php echo $bodyError;?></span></div>
-<div>Skills: <?php if(!$skillError) echo $skills;?>
+<div>Skills: <?php if(!$skillError) print_r( $skills);?>
     <span><?php echo $skillError;?></span></div>
 </html>
