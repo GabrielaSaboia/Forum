@@ -1,0 +1,13 @@
+body{
+    background-image: url(https://i.pinimg.com/564x/11/d5/27/11d527ff289466c5e7cb29d711e3055b.jpg);
+    background-color: #cfc;
+    display: block;
+}
+form {
+    width: 50%;
+    border-radius: 10px;
+background-color: #fff;
+}
+input .user-input{
+
+}
