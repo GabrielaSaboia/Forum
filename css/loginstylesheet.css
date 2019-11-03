@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body{
+
+body {
     font-family: 'Roboto', sans-serif;
 
     height: 100%;
-    background: #E9C21E url(img/background.png) no-repeat fixed center center;
+    background: #E9C21E url(../img/background.png) no-repeat fixed center center;
     background-size: cover;
     display: block;
 }
@@ -39,6 +39,7 @@ body{
     font-size: 18px;
     padding-left: 54px;
 }
+
 .form-group::before{
     font-family: 'Font Awesome\ 5 Free', serif;
     content: "\f007";
@@ -49,7 +50,7 @@ body{
     padding-top: 4px;
 }
 
-.form-group:last-of-type::before{
+.form-group:last-child::before{
     content: "\f023";
 }
 
