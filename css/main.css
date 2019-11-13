@@ -26,11 +26,15 @@ body{
 }
 .logo-img img{
     width: 19vw;
-
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
 }
-@media only screen and (max-width: 575px){
+@media only screen and (min-width: 576px){
     .logo-img img{
         width: 65vw;
+    }
+    .col-sm-8{
+        max-width: 100%;
     }
 }
 .form-group{
