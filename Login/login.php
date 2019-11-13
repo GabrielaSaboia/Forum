@@ -39,7 +39,7 @@ AND `password` = \":password\"";
 
         if (count($accounts) > 0) {
             // Login Passed  week 9 mvc before anything about mvc actual page?
-            header('Location: ');
+            header('Location: home.php');
         } else {
             // Login Failed
             header('Location: ../Registration/index.html');
