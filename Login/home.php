@@ -50,8 +50,12 @@ $statement->closeCursor();
 <!-- code to go through the two dimensional array retrieved from the database-->
 <?php
 foreach($questionHistory as $question) { ?>
-   <table>
+   <table class="table">
        <tr>
+           <th scope="col">
+               Your Questions
+           </th></tr>
+       <tr scope="row">
            <td><?php echo $questionHistory['title']; ?></td>
            <td><?php echo $questionHistory['body']; ?></td>
            <td><?php echo $questionHistory['skills']; ?></td>

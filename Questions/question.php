@@ -1,6 +1,8 @@
 <?php
 
 require("../pdo.php");
+// Put at top of home.php
+$userId = filter_input(INPUT_GET, 'userId');
 
 $name = filter_input(INPUT_POST, 'questionName');
 $body = filter_input(INPUT_POST, 'body');
@@ -35,12 +37,14 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         $valid=false;
     }
     if($valid==true){
-        $query = "INSERT INTO `questions`(`title`, `body`, `skills`) 
-VALUES (:title, :body, :skills)";
+
+        $query = "INSERT INTO `questions`(`ownerid`,`title`, `body`, `skills`) 
+VALUES (':ownerid',':title', ':body', ':skills')";
         $statement = $db->prepare($query);
         $statement->bindValue(':title', $name);
         $statement->bindValue(':body', $body);
         $statement->bindValue(':skills', $skills);
+        $statement->bindValue(':ownerid', $userId);
         $statement->execute();
         $accounts = $statement->fetch();
         $statement->closeCursor();
