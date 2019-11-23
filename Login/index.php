@@ -1,3 +1,8 @@
+<?php
+session_start();
+$aEmail = $_SESSION['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

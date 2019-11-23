@@ -1,9 +1,11 @@
 <?php
-
-require("../pdo.php");
+session_start();
+$aEmail = $_SESSION['email'];
+require("../model/pdo.php");
 // Put at top of home.php
-$userId = filter_input(INPUT_GET, 'userId');
 
+
+$userId = filter_input(INPUT_GET, 'userId');
 $name = filter_input(INPUT_POST, 'questionName');
 $body = filter_input(INPUT_POST, 'body');
 $skills= filter_input(INPUT_POST, 'skills');
@@ -24,10 +26,10 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     if(empty($body)){
         $bodyError = 'Please enter text.';
         $valid=false;
-    }else if(strlen($body) < 500){
-        $bodyError ='Text must be shorter than 500 characters.';
-        $valid=false;
-    }
+    }//else if(strlen($body) < 500){
+       // $bodyError ='Text must be shorter than 500 characters.';
+        //$valid=false;
+    //}
     //Checking skills section
     if(empty($skills)){
         $skillError = 'Please add a skill.';
@@ -38,19 +40,20 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     }
     if($valid==true){
 
-        $query = "INSERT INTO `questions`(`ownerid`,`title`, `body`, `skills`) 
-            VALUES (:ownerid,:title, :body, :skills)";
+        $query = 'INSERT INTO questions(ownerid, title, body, skills) 
+            VALUES 
+            (:ownerid,:title, :body, :skills)';
+
         $statement = $db->prepare($query);
+        $statement->bindValue(':ownerid', $userId);
         $statement->bindValue(':title', $name);
         $statement->bindValue(':body', $body);
         $statement->bindValue(':skills', $skills);
-        $statement->bindValue(':ownerid', $userId);
         $statement->execute();
-        $accounts = $statement->fetch();
         $statement->closeCursor();
 
         //redirect to question page
-        header('Location: profile.php');
+        header("Location: ../Login/home.php?userId=$userId");
 
     }
 }

@@ -1,17 +1,12 @@
 <?php
+session_start();
+$aEmail = $_SESSION['email'];
 
-require('../pdo.php');
+require('../model/pdo.php');
+require('../model/pdoFunctions.php');
 // Put at top of home.php
 $userId = filter_input(INPUT_GET, 'userId');
-
-$query = "SELECT * FROM `questions` WHERE `ownerid`=':id'";
-$statement= $db->prepare($query);
-$statement->bindvalue(':id', $userId);
-$statement->execute();
-$questionHistory = $statement->fetchAll();
-$statement->closeCursor();
-
-
+$email = filter_input(INPUT_GET, 'ue');
 
 ?>
 
@@ -36,33 +31,44 @@ $statement->closeCursor();
         <ul>
             <div class="where">
                 <div class="nav-logo logo-img">
-                    <img src="../img/logo.png">
-                </div>
+                    <img src="../img/logo.png"></div>
                 <li><a href="home.php">Home</a></li>
-                <li><a href="../Questions/profile.php">Profile</a></li>
-                <li><a href="../Registration/account.php">Account</a></li>
-                <li><a href="../Questions/index.html">Ask Something</a></li>
+                <li><a href="../Questions/index.php">Ask Something</a></li>
             </div>
         </ul>
     </nav>
 </div>
 <div class="container">
-<!-- code to go through the two dimensional array retrieved from the database-->
-<?php
-foreach($questionHistory as $question) { ?>
-   <table class="table">
-       <tr>
-           <th scope="col">
-               Your Questions
-           </th></tr>
-       <tr scope="row">
-           <td><?php echo $questionHistory['4']; ?></td>
-           <td><?php echo $questionHistory['5']; ?></td>
-           <td><?php echo $questionHistory['6']; ?></td>
-       </tr>
-   </table>
-<?php
-        } ?>
+
+    <?php
+    if ($userId == null){$userId = get_userId($email);
+    }
+    echo '<h1 class="display-4">'; echo get_username($userId); echo '</h1>';
+    $questionHistory = get_questions($userId);?>
+
+
+    <table class="table table-light table-bordered" >
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Body</th>
+                <th scope="col">Skills</th>
+            </tr>
+        </thead>
+
+        <?php foreach ($questionHistory as $question) : ?>
+
+
+            <tr scope="row">
+                <td> 1 <?php echo $question['title']; ?></td>
+                <td> 2 <?php echo $question['body']; ?></td>
+                <td> 3 <?php echo $question['skills']; ?></td>
+            </tr>
+
+            <?php endforeach; ?>
+    </table>
+    <button type="submit" class="btn" ><a href="../Questions/index.php">submit new question</a></button>
+
 
 </div>
 

@@ -77,3 +77,12 @@ button{
 .forgot a {
     color: #FAF2D1;
 }
+/** Table CSS **/
+table .thead-light{
+    background-color: #FAF2D1;
+
+}
+
+.display-4{
+    color:white;
+}

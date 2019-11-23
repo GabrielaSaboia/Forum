@@ -1,6 +1,8 @@
 <?php
+session_start();
+$aEmail = $_SESSION['email'];
 //database path
-require("../pdo.php");
+require("../model/pdo.php");
 
 //Get value from input
 $firstName = filter_input(INPUT_POST,'first_name');
@@ -53,7 +55,7 @@ $statement->execute();
 //comment close database
 $statement->closeCursor();
 
-header('Location: account.php');
+header("Location: ../Login/home.php?ue=$email");
 
 ?>
 <html lang="en">

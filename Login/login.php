@@ -1,7 +1,8 @@
 <?php
-
+session_start();
+$aEmail = $_SESSION['email'];
 // include or create PDO
-require("../pdo.php");
+require("../model/pdo.php");
 
 //Get value from input
 $email = filter_input(INPUT_POST,'email');
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($password)){
         $passwordError ="Password required";
         $formValid=false;
-    } else if(strlen($password) < 8){
+    } else if(strlen($password) < 1){
         $passwordError = "Password must contain 8 characters";
         $formValid=false;
     }
