@@ -25,13 +25,13 @@ body{
     margin-bottom: 45px;
 }
 .logo-img img{
-    width: 19vw;
+    width: 160px;
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
 }
-@media only screen and (min-width: 576px){
+@media only screen and (max-width: 576px){
     .logo-img img{
-        width: 65vw;
+        width: 150px;
     }
     .col-sm-8{
         max-width: 100%;

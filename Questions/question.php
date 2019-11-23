@@ -35,16 +35,18 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         $valid=false;
     }
     if($valid==true){
-        $query = "SELECT * FROM `accounts` WHERE `email` = \":email\" AND `password` = \":password\"";
+        $query = "INSERT INTO `questions`(`title`, `body`, `skills`) 
+VALUES (:title, :body, :skills)";
         $statement = $db->prepare($query);
-        $statement->bindValue(':email', $email);
-        $statement->bindValue(':password', $password);
+        $statement->bindValue(':title', $name);
+        $statement->bindValue(':body', $body);
+        $statement->bindValue(':skills', $skills);
         $statement->execute();
         $accounts = $statement->fetch();
         $statement->closeCursor();
 
         //redirect to question page
-        header('Location: ');
+        header('Location: profile.php');
 
     }
 }

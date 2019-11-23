@@ -2,10 +2,10 @@
 $username = 'gs525';
 $password = 'Q<0{A(&&G';
 $hostname = 'sql1.njit.edu';
-$dsn = " mysql:host=$hostname;dbname=$username";
-try{
+$dsn = "mysql:host=$hostname;dbname=$username";
+try {
     $db = new PDO($dsn, $username, $password);
-} catch(PDOException $e){
+} catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>

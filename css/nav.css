@@ -1,3 +1,32 @@
 nav{
     background-color: #FAF2D1;
+    box-shadow: 0 0 3px #848484;
+}
+
+ul{
+
+}
+li{
+    display: inline;
+    padding:  2vw;
+    color: #8E3057;
+}
+.where{
+    /**float: left;**/
+}
+
+/** logo in navigation bar**/
+.nav-logo{
+    width: 160px;
+    display: inline;
+}
+@media only screen and (max-width: 576px){
+
+    .logo-img img{
+        width: 15%;
+    }
+    .nav-logo img{
+        width: 160px;
+    }
+
 }

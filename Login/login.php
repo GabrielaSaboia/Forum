@@ -23,23 +23,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($password)){
         $passwordError ="Password required";
         $formValid=false;
-    } else if(strlen($password) <= 8){
+    } else if(strlen($password) < 8){
         $passwordError = "Password must contain 8 characters";
         $formValid=false;
     }
     if($formValid==true){
-        $query = "SELECT * FROM `accounts` WHERE `email` = \":email\" 
-AND `password` = \":password\"";
+        $query = "SELECT * FROM `accounts` WHERE `email` = :email 
+        AND `password` = :password";
         $statement = $db->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':password', $password);
         $statement->execute();
-        $accounts = $statement->fetch();
+        $accounts = $statement->fetchAll();
         $statement->closeCursor();
 
-        if (count($accounts) > 0) {
+        if (count($accounts)>0) {
+            $userId = $accounts[0]['id'];
             // Login Passed  week 9 mvc before anything about mvc actual page?
-            header('Location: home.php');
+            header("Location: home.php?userId=$userId");
+
+            // Put at top of home.php
+            //$userId = filter_input(INPUT_GET, 'userId');
         } else {
             // Login Failed
             header('Location: ../Registration/index.html');

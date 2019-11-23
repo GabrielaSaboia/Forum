@@ -1,4 +1,7 @@
 <?php
+// Put at top of home.php
+$userId = filter_input(INPUT_GET, 'userId');
+
 ?>
 
 <DOCTYPE html>
@@ -17,17 +20,22 @@
     <link rel="stylesheet" type="text/css" href="../css/nav.css">
 </head>
 <body>
-<div class="nav-bar">
-    <nav>
+<div >
+    <nav class="navbar navbar-expand-md">
         <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="../Questions/profile.php">Profile</a></li>
-            <li><a href="../Registration/account.php">Account</a></li>
+            <div class="where">
+                <div class="nav-logo logo-img">
+                    <img src="../img/logo.png">
+                </div>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="../Questions/profile.php">Profile</a></li>
+                <li><a href="../Registration/account.php">Account</a></li>
+            </div>
         </ul>
     </nav>
 </div>
 <div class="container">
-
+<?php echo $userId?>
 </div>
 
 

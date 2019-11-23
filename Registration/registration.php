@@ -1,4 +1,7 @@
 <?php
+//database path
+require("../pdo.php");
+
 //Get value from input
 $firstName = filter_input(INPUT_POST,'first_name');
 $lastName = filter_input(INPUT_POST,'lastName');
@@ -9,6 +12,7 @@ $password = filter_input(INPUT_POST, 'password');
 $checkEmail = strpos($email, '@');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
     If(empty($email)){
         $emailErr = "Enter an Email";
     } else if($checkEmail === false){
@@ -29,6 +33,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $birthdayError = "Enter your birthday!";
     }
 }
+$query = 'INSERT INTO accounts(email, fname, lname, birthday, password) 
+    VALUES 
+    (:email, :fname, :lname, :birthday, :password)';
+
+//PDO statement
+
+$statement = $db->prepare($query);
+//Bind values to SQL
+$statement->bindValue(':email', $email);
+$statement->bindValue(':fname', $firstName);
+$statement->bindValue(':lname', $lastName);
+$statement->bindValue(':birthday', $birthday);
+$statement->bindValue(':password', $password);
+
+//execute sql query
+
+$statement->execute();
+//comment close database
+$statement->closeCursor();
+
+header('Location: account.php');
+
 ?>
 <html lang="en">
 <head>
