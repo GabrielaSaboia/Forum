@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     if($valid==true){
 
         $query = "INSERT INTO `questions`(`ownerid`,`title`, `body`, `skills`) 
-VALUES (':ownerid',':title', ':body', ':skills')";
+            VALUES (:ownerid,:title, :body, :skills)";
         $statement = $db->prepare($query);
         $statement->bindValue(':title', $name);
         $statement->bindValue(':body', $body);

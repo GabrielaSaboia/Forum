@@ -56,9 +56,9 @@ foreach($questionHistory as $question) { ?>
                Your Questions
            </th></tr>
        <tr scope="row">
-           <td><?php echo $questionHistory['title']; ?></td>
-           <td><?php echo $questionHistory['body']; ?></td>
-           <td><?php echo $questionHistory['skills']; ?></td>
+           <td><?php echo $questionHistory['4']; ?></td>
+           <td><?php echo $questionHistory['5']; ?></td>
+           <td><?php echo $questionHistory['6']; ?></td>
        </tr>
    </table>
 <?php
