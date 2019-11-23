@@ -47,14 +47,16 @@ $statement->closeCursor();
     </nav>
 </div>
 <div class="container">
-
+<!-- code to go through the two dimensional array retrieved from the database-->
 <?php
 foreach($questionHistory as $question) { ?>
-    <tr>
-        <td><?php echo $questionHistory['title']; ?></td>
-        <td><?php echo $questionHistory['body']; ?></td>
-        <td><?php echo $questionHistory['skills']; ?></td>
-    </tr>
+   <table>
+       <tr>
+           <td><?php echo $questionHistory['title']; ?></td>
+           <td><?php echo $questionHistory['body']; ?></td>
+           <td><?php echo $questionHistory['skills']; ?></td>
+       </tr>
+   </table>
 <?php
         } ?>
 
