@@ -28,6 +28,7 @@
                     <li><a href="../Login/home.php">Home</a></li>
                     <li><a href="../Questions/question.php">Profile</a></li> <!--this should be insert question or write new question-->
                     <li><a href="../Registration/account.php">Account</a></li>
+                    <li><a href="../Questions/index.html">Ask Something</a></li>
                 </div>
             </ul>
         </nav>

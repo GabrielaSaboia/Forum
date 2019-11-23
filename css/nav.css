@@ -11,6 +11,9 @@ li{
     padding:  2vw;
     color: #8E3057;
 }
+a{
+    color: black;
+}
 .where{
     /**float: left;**/
 }

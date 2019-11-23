@@ -1,6 +1,17 @@
 <?php
+
+require('../pdo.php');
 // Put at top of home.php
 $userId = filter_input(INPUT_GET, 'userId');
+
+$query = "SELECT * FROM `questions` WHERE `ownerid`=':id'";
+$statement= $db->prepare($query);
+$statement->bindvalue(':id', $userId);
+$statement->execute();
+$questionHistory = $statement->fetchAll();
+$statement->closeCursor();
+
+
 
 ?>
 
@@ -30,12 +41,23 @@ $userId = filter_input(INPUT_GET, 'userId');
                 <li><a href="home.php">Home</a></li>
                 <li><a href="../Questions/profile.php">Profile</a></li>
                 <li><a href="../Registration/account.php">Account</a></li>
+                <li><a href="../Questions/index.html">Ask Something</a></li>
             </div>
         </ul>
     </nav>
 </div>
 <div class="container">
-<?php echo $userId?>
+
+<?php
+foreach($questionHistory as $question) { ?>
+    <tr>
+        <td><?php echo $questionHistory['title']; ?></td>
+        <td><?php echo $questionHistory['body']; ?></td>
+        <td><?php echo $questionHistory['skills']; ?></td>
+    </tr>
+<?php
+        } ?>
+
 </div>
 
 
