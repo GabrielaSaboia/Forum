@@ -1,14 +1,18 @@
 <?php
-session_start();
-$aEmail = $_SESSION['email'];
+
+
 require("../model/pdo.php");
+require('../model/pdoFunctions.php');
 // Put at top of home.php
 
 
-$userId = filter_input(INPUT_GET, 'userId');
+//$userId = filter_input(INPUT_GET, 'userId');
 $name = filter_input(INPUT_POST, 'questionName');
 $body = filter_input(INPUT_POST, 'body');
 $skills= filter_input(INPUT_POST, 'skills');
+
+session_start();
+$userId = $_SESSION['userId'];
 
 $skillCheck = explode(',', $skills);
 

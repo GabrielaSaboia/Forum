@@ -23,7 +23,6 @@ $names= $statement->fetch();
 $statement->closeCursor();
 $first=$names['fname'];
 $second = $names['lname'];
-
 return $first . ' ' . $second;
 }
 
@@ -38,4 +37,12 @@ function get_questions($userid){
     $statement->closeCursor();
 
     return $question;
+}
+function delete_user($username){
+    global $db;
+    $query ="DELETE FROM accounts WHERE email=:email";
+    $statement = $db->prepare($query);
+    $statement->bindvalue(':email', $username);
+    $statement->execute();
+    $statement->closeCursor();
 }

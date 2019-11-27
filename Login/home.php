@@ -1,12 +1,14 @@
 <?php
-session_start();
-$aEmail = $_SESSION['email'];
+
 
 require('../model/pdo.php');
 require('../model/pdoFunctions.php');
 // Put at top of home.php
 $userId = filter_input(INPUT_GET, 'userId');
-$email = filter_input(INPUT_GET, 'ue');
+//$email = filter_input(INPUT_GET, 'ue');
+
+session_start();
+$_SESSION['userId'] = $userId;
 
 ?>
 
@@ -21,9 +23,9 @@ $email = filter_input(INPUT_GET, 'ue');
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
 
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/nav.css">
 
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../css/nav.css">
 </head>
 <body>
 <div >
@@ -32,8 +34,8 @@ $email = filter_input(INPUT_GET, 'ue');
             <div class="where">
                 <div class="nav-logo logo-img">
                     <img src="../img/logo.png"></div>
-                <li><a href="home.php">Home</a></li>
-                <li><a href="../Questions/index.php">Ask Something</a></li>
+                <li><a href="../Login/home.php">Home</a></li>
+                <li><a href="index.php">Ask Something</a></li>
             </div>
         </ul>
     </nav>
@@ -60,9 +62,9 @@ $email = filter_input(INPUT_GET, 'ue');
 
 
             <tr scope="row">
-                <td> 1 <?php echo $question['title']; ?></td>
-                <td> 2 <?php echo $question['body']; ?></td>
-                <td> 3 <?php echo $question['skills']; ?></td>
+                <td><?php echo $question['title']; ?></td>
+                <td><?php echo $question['body']; ?></td>
+                <td><?php echo $question['skills']; ?></td>
             </tr>
 
             <?php endforeach; ?>
