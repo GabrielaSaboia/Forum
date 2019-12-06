@@ -63,7 +63,9 @@ button{
     border-radius: 5px;
     border-bottom: 4px solid #C1C1C1;
 }
-
+.btn.edit{
+    border-bottom: none;
+}
 .btn:hover, .btn:focus{
     background-color: #C1C1C1!important;
 }
