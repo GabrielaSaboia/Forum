@@ -29,6 +29,6 @@ include('../views/nav.php');
             </tr>
             <?php endforeach; ?>
     </table>
-    <button type="submit" class="btn" ><a href="../views/questions.php">submit new question</a></button>
+    <button type="submit" class="btn" ><a href=".?action=show_question_form">submit new question</a></button>
 </div>
 <?php include('footer'); ?>
