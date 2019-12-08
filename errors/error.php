@@ -1,10 +1,13 @@
 <?php
-session_start();
-$_SESSION['email'] = $aEmail;
-// include or create PDO
-require("../model/database.php");
-require("../model/accounts_db.php");
+$error = filter_input(INPUT_POST, 'error');
+if ($error == NULL){
+    $error = filter_input(INPUT_GET, 'error');
+}
 
+
+switch($error){
+    case 'Email and Password are required':
+    {
 //Get value from input
 $email = filter_input(INPUT_POST,'email');
 $password = filter_input(INPUT_POST, 'password');
@@ -52,4 +55,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <div>Password = <?php if (!$passwordError) echo $password;?>
     <span><?php echo $passwordError;?></span>
 </div>
-<?php include('../views/footer.php'); ?>
+<?php
+        break;
+    }
+    case 'User Id unavailable':
+    {
+        break;
+    }
+
+    case 'Registration Error':
+    {?>
+        <div class="col-lg">
+            <div>First Name = <?php if(!$firstNameError) echo $firstName;?>
+                <span><?php echo $firstNameError;?></span></div>
+
+            <div>Last Name = <?php if(!$lastNameError) echo $lastName;?>
+                <span><?php echo $lastNameError;?></span></div>
+
+            <div> Birthday = <?php if(!$birthdayError) echo $birthday;?>
+                <span> <?php echo $birthdayError;?></span></div>
+
+
+            <div>Email = <?php if(!$emailErr) echo $email;?>
+                <span><?php echo $emailErr;?></span></div>
+
+            <div>Password = <?php if (!$passwordError) echo $password;?>
+                <span><?php echo $passwordError;?></span></div>
+        </div>
+
+        <?php
+        break;
+    }
+}

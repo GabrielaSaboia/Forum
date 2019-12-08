@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION['email']=$aEmail;
+
 include('../views/header.php');
 include('../views/nav.php');
 ?>
@@ -7,7 +10,7 @@ include('../views/nav.php');
     <?php
     if ($userId == null){$userId = get_userId($email);
     }
-    echo '<h1 class="display-4">'; echo get_username($userId); echo '</h1>';
+    echo '<h1 class="display-4">'; echo $userId = get_username($userId); echo '</h1>';
     /*$questionHistory = get_questions($userId);*/?>
     <table class="table table-light table-bordered" >
         <thead class="thead-light">
@@ -29,6 +32,10 @@ include('../views/nav.php');
             </tr>
             <?php endforeach; ?>
     </table>
-    <button type="submit" class="btn" ><a href=".?action=show_question_form">submit new question</a></button>
-</div>
+
+    <form action="index.php" method="post">
+        <input type="hidden" name="action" value="new_question">
+        <input type="submit" class="btn">
+    </form>
+    </div>
 <?php include('footer'); ?>
