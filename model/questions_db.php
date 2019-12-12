@@ -50,11 +50,11 @@ function edit_question($title, $body, $skills, $id){
 }
 
 //v. Delete a question
-function delete_question($title){
+function delete_question($id){
     global $db;
-    $query ="DELETE FROM accounts WHERE title=:title";
+    $query ="DELETE FROM questions WHERE id=:id";
     $statement = $db->prepare($query);
-    $statement->bindvalue(':email', $title);
+    $statement->bindvalue(':id', $id);
     $statement->execute();
     $statement->closeCursor();
 }

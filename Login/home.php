@@ -1,16 +1,13 @@
 <?php
-session_start();
-$_SESSION['email']=$aEmail;
-
-include('../views/header.php');
-include('../views/nav.php');
+include('views/header.php');
+include('views/nav.php');
 ?>
 </div>
 <div class="container">
     <?php
     if ($userId == null){$userId = get_userId($email);
     }
-    echo '<h1 class="display-4">'; echo $userId = get_username($userId); echo '</h1>';
+    echo '<h1 class="display-4">'; echo get_username($userId); echo '</h1>';
     /*$questionHistory = get_questions($userId);*/?>
     <table class="table table-light table-bordered" >
         <thead class="thead-light">
@@ -19,6 +16,7 @@ include('../views/nav.php');
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
                 <th scope="col">Skills</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -29,13 +27,24 @@ include('../views/nav.php');
                 <td><?php echo $body = $question['body']; ?></td>
                 <td><?php echo $skills = $question['skills']; ?></td>
                 <td><button type="submit" class="btn  edit" <?php edit_question($title, $body, $skills, $id); ?>>Edit</td>
+                <td>
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="action" value="delete_question">
+                        <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
+                        <input type="hidden" name="userId" value="<?php echo $userId ?>">
+
+                        <input class="btn" type="submit" value="Delete">
+                    </form>
+                </td>
             </tr>
             <?php endforeach; ?>
     </table>
 
+    <!--<button type="submit" formmethod="post"><a href=".?action=new_question">New Question</a></button>-->
     <form action="index.php" method="post">
-        <input type="hidden" name="action" value="new_question">
+        <input type="hidden" name="action" value="show_question_form">
+        <input type="hidden" name="userId" value="<?php echo $userId; ?>">
         <input type="submit" class="btn">
     </form>
     </div>
-<?php include('footer'); ?>
+<?php include('views/footer.php'); ?>
