@@ -14,7 +14,18 @@ function get_questions($userid){
 }
 
 //ii. Get 1 specific question
+function choose_question($id){
 
+    global $db;
+    $query = "SELECT title, body, skills FROM questions WHERE id=:id";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':questionId', $id);
+    $statement->execute();
+    $question = $statement->fetch();
+    $statement->closeCursor();
+    return $question[0]['id'];
+}
 //iii. Create a Question
 function new_question($userId, $name, $body, $skills){
 

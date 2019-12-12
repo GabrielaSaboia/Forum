@@ -27,10 +27,8 @@ include('views/nav.php');
                                       name="skills" placeholder='Enter skills'></textarea>
                 </div>
                       <div class="form-group">
-                    <button type="submit" class="btn">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Submit
-                    </button>
+                    <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>
+                        Submit</button>
                 </div>
             </form>
         </div><!--End modal content-->

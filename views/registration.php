@@ -11,11 +11,10 @@ include('header.php');
             </div>
             <form class="col-12" action="index.php" method="post">
                 <div class="form-group">
-                    <input class="form-control" type="text" id="first_name"
-                           name="first_name" placeholder="Enter First Name">
+                    <input class="form-control" type="text" id="first_name" name="first_name" placeholder="Enter First Name">
                 </div>
 
-                <input type="hidden" name="action" value="display_users">
+                <input type="hidden" name="action" value="create-user">
                 <input type="hidden" name="userId" value=" <?php echo $userId; ?>">
 
                 <div class="form-group">

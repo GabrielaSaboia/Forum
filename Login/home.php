@@ -26,14 +26,23 @@ include('views/nav.php');
                 <td><?php echo $title = $question['title']; ?></td>
                 <td><?php echo $body = $question['body']; ?></td>
                 <td><?php echo $skills = $question['skills']; ?></td>
-                <td><button type="submit" class="btn  edit" <?php edit_question($title, $body, $skills, $id); ?>>Edit</td>
+                <td>
+                    <form>
+                        <input type="hidden" name="action" value="view_question">
+                        <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
+                        <input type="hidden" name="userId" value="<?php echo $userId ?>">
+
+                    <input type="submit" class="btn edit" value="View" >
+                    </form>
+                </td>
+
                 <td>
                     <form action="index.php" method="post">
                         <input type="hidden" name="action" value="delete_question">
                         <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
                         <input type="hidden" name="userId" value="<?php echo $userId ?>">
 
-                        <input class="btn" type="submit" value="Delete">
+                        <input class="btn edit" type="submit" value="Delete">
                     </form>
                 </td>
             </tr>

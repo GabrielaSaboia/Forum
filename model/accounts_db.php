@@ -62,7 +62,6 @@ function register_newUser($email, $firstName, $lastName, $birthday, $password){
     $statement->execute();
 //comment close database
     $statement->closeCursor();
-
     return $db->lastInsertId();
 }
 

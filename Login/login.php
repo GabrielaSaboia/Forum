@@ -1,6 +1,5 @@
 <?php
-session_start();
-$_SESSION['email'] = $aEmail;
+
 // include or create PDO
 require("../model/database.php");
 require("../model/accounts_db.php");

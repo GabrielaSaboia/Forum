@@ -28,33 +28,25 @@ switch ($action) {
         $aEmail = $_SESSION['email'];
         $userId = get_userId('email');
         $_SESSION['userId'] = $userId;
-
         $userId = filter_input(INPUT_POST, 'userId');
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
-
         if ($email == NULL || $password == NULL) {
             $error = 'Email and Password are required';
             include('errors/error.php');
         } else {
             $userId = login($email, $password);
-
             if ($userId !== NULL) {
-
                 header("Location: .?action=display_users&userId=$userId");
             } else {
                 header("Location: .?action=show_registration_form&userId=$userId");
-                //$error = 'Invalid Login';
-                //include('errors/error.php');
             }
         }
         break;
     }
     case 'display_users':
     {
-
         $userId = $_SESSION['userId'];
-
         $userId = filter_input(INPUT_GET, 'userId');
         if ($userId == NULL) {
             $error = 'User Id unavailable';
@@ -68,22 +60,12 @@ switch ($action) {
     }
     case 'show_registration_form':
     {
-
-        $userId = $_SESSION['userId'];
-
-        $userId = filter_input(INPUT_POST, 'userId');
-        if ($userId == NULL) {
-            $error = 'User Id unavailable';
-            include('errors/error.php');
-        } else {
             include('views/registration.php');
-        }
         break;
     }
     case 'create-user':
     {
         $userId = $_SESSION['userId'];
-
         //Get value from input
         $firstName = filter_input(INPUT_POST,'first_name');
         $lastName = filter_input(INPUT_POST,'lastName');
@@ -119,7 +101,7 @@ switch ($action) {
     }
     case 'show_question_form':
     {
-        $userId = $_SESSION['userId'];
+        $_SESSION['userId'] = $userId;
         $userId = filter_input(INPUT_POST, 'userId');
         if ($userId == NULL) {
             $error = 'User Id unavailable';
@@ -129,11 +111,16 @@ switch ($action) {
         }
         break;
     }
+    case 'view_question':
+    {
+    include('views/single_display.php');
+        break;
+    }
 
     case 'new_question':
         {
             //$aEmail=$_SESSION['email'];
-            $userId = $_SESSION['userId'];
+            $_SESSION['userId'] = $userId;
 
             $userId = filter_input(INPUT_POST, 'userId');
             $name = filter_input(INPUT_POST, 'questionName');
