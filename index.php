@@ -44,6 +44,21 @@ switch ($action) {
         }
         break;
     }
+
+    case 'return':
+    {
+        $userId = $_SESSION['userId'];
+        $userId = filter_input(INPUT_POST, 'userId');
+        if ($userId == NULL) {
+            $error = 'User Id unavailable';
+            include('errors/error.php');
+        } else {
+            $questions = get_questions($userId);
+            include('Login/home.php');
+        }
+        break;
+    }
+
     case 'display_users':
     {
         $userId = $_SESSION['userId'];
@@ -166,6 +181,19 @@ switch ($action) {
         header("Location: .?action=display_users&userId=$userId");
         break;
     }
+
+    case 'view_all_users_questions':
+    {
+        $userId = $_SESSION['userId'];
+        $userId = filter_input(INPUT_POST, 'userId');
+        if ($userId == NULL) {
+            $error = 'User Id unavailable';
+            include('errors/error.php');
+        } else {
+            $questions = all_users_questions($userId);
+            include('views/all_questions.php');
+        }
+    }
    /* case 'view_question':
     {
         $questionId = filter_input(INPUT_POST, 'questionId');
@@ -195,8 +223,10 @@ switch ($action) {
             //header("Location: .?action=display_users&userId=$userId&questionId=$questions");
         }
     }
-        default:
-            {
+
+
+    default:
+        {
         $error = 'Unknown Action';
         include('errors/error.php');
         }

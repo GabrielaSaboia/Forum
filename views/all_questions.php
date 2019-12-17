@@ -5,14 +5,19 @@ include('views/nav.php');
     </div>
     <div class="container">
         <?php
-        echo '<h1 class="display-4">'; echo get_username($userId);
-        echo '</h1>';
+
+
+        echo '<h1 class="display-4">'; echo get_username($userId); echo '</h1>';
         /*$questionHistory = get_questions($userId);*/?>
+
+        <!--Return Button -->
         <form action="index.php" method="post">
-            <input type="hidden" name="action" value="view_all_users_questions">
+            <input type="hidden" name="action" value="return">
             <input type="hidden" name="userId" value="<?php echo $userId; ?>">
-            <input type="submit" value="Other Questions" class="btn">
+            <input type="submit" value="Back to Main Page" class="btn">
         </form>
+
+
         <table class="table table-light table-bordered" >
             <thead class="thead-light">
             <tr>
@@ -20,8 +25,8 @@ include('views/nav.php');
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
                 <th scope="col">Skills</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <?php foreach ($questions as $question) : ?>
@@ -32,10 +37,11 @@ include('views/nav.php');
                     <td><?php echo $skills = $question['skills']; ?></td>
                     <td>
                         <form>
-                            <input type="hidden" name="action" value="display_users">
+                            <input type="hidden" name="action" value="view_question">
                             <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
                             <input type="hidden" name="userId" value="<?php echo $userId ?>">
-                            <input type="submit" class="btn edit" value="Go Back" >
+
+                            <input type="submit" class="btn edit" value="View" >
                         </form>
                     </td>
 
@@ -44,6 +50,7 @@ include('views/nav.php');
                             <input type="hidden" name="action" value="delete_question">
                             <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
                             <input type="hidden" name="userId" value="<?php echo $userId ?>">
+
                             <input class="btn edit" type="submit" value="Delete">
                         </form>
                     </td>

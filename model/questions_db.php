@@ -27,7 +27,16 @@ function choose_question($id){
 }
 
 //show questions from all users
-
+function all_users_questions($userId){
+    global $db;
+    $query = "SELECT * FROM questions";
+    $statement = $db->prepare($query);
+    //$statement->bindValue(':id', $id);
+    $statement->execute();
+    $question = $statement->fetchAll();
+    $statement->closeCursor();
+    return $question;
+}
 //iii. Create a Question
 function new_question($userId, $name, $body, $skills){
 

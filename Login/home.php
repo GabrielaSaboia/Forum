@@ -9,6 +9,13 @@ include('views/nav.php');
 
     echo '<h1 class="display-4">'; echo get_username($userId); echo '</h1>';
     /*$questionHistory = get_questions($userId);*/?>
+
+    <form action="index.php" method="post">
+        <input type="hidden" name="action" value="view_all_users_questions">
+        <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+        <input type="submit" value="Other Questions" class="btn">
+    </form>
+
     <table class="table table-light table-bordered" >
         <thead class="thead-light">
             <tr>
