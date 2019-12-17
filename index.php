@@ -52,7 +52,6 @@ switch ($action) {
             $error = 'User Id unavailable';
             include('errors/error.php');
         } else {
-            get_username($userId);
             $questions = get_questions($userId);
             include('Login/home.php');
         }
@@ -111,11 +110,6 @@ switch ($action) {
         }
         break;
     }
-    case 'view_question':
-    {
-    include('views/single_display.php');
-        break;
-    }
 
     case 'new_question':
         {
@@ -171,6 +165,35 @@ switch ($action) {
         delete_question($questionId);
         header("Location: .?action=display_users&userId=$userId");
         break;
+    }
+   /* case 'view_question':
+    {
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        $userId = filter_input(INPUT_POST, 'userId');
+        if($userId == NULL){
+            $error = 'user Id not available';
+            include('errors/error.php');
+        } else{
+            get_username($userId);
+            $questions = get_questions($userId);
+            include('views/single_display.php');
+        }
+        break;
+    }*/
+
+    case 'view_question':
+    {
+        $userId = $_SESSION['userId'];
+        $questionId = filter_input(INPUT_GET, 'questionId');
+        $userId = filter_input(INPUT_GET, 'userId');
+        if ($questionId == NULL) {
+            $error = 'User Id unavailable';
+            include('errors/error.php');
+        } else {
+            $questions = choose_question($questionId);
+            include('views/single_display.php');
+            //header("Location: .?action=display_users&userId=$userId&questionId=$questions");
+        }
     }
         default:
             {

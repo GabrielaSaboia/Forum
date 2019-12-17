@@ -17,15 +17,17 @@ function get_questions($userid){
 function choose_question($id){
 
     global $db;
-    $query = "SELECT title, body, skills FROM questions WHERE id=:id";
-
+    $query = "SELECT * FROM questions WHERE id=:id";
     $statement = $db->prepare($query);
-    $statement->bindValue(':questionId', $id);
+    $statement->bindValue(':id', $id);
     $statement->execute();
-    $question = $statement->fetch();
+    $question = $statement->fetchAll();
     $statement->closeCursor();
-    return $question[0]['id'];
+    return $question;
 }
+
+//show questions from all users
+
 //iii. Create a Question
 function new_question($userId, $name, $body, $skills){
 

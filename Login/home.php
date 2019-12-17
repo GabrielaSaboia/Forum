@@ -5,8 +5,8 @@ include('views/nav.php');
 </div>
 <div class="container">
     <?php
-    if ($userId == null){$userId = get_userId($email);
-    }
+
+
     echo '<h1 class="display-4">'; echo get_username($userId); echo '</h1>';
     /*$questionHistory = get_questions($userId);*/?>
     <table class="table table-light table-bordered" >
@@ -53,7 +53,7 @@ include('views/nav.php');
     <form action="index.php" method="post">
         <input type="hidden" name="action" value="show_question_form">
         <input type="hidden" name="userId" value="<?php echo $userId; ?>">
-        <input type="submit" class="btn">
+        <input type="submit" value="New Question" class="btn">
     </form>
     </div>
 <?php include('views/footer.php'); ?>

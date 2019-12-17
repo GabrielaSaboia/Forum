@@ -1,7 +1,6 @@
 <?php
 
 //Function that retrieves a user ID when given an email for the account
-
 function get_userId($email){
     global $db;
     $query = 'SELECT id FROM accounts WHERE email=:email';
@@ -16,7 +15,6 @@ function get_userId($email){
 }
 
 function login($email, $password){
-
     global $db;
     $query = "SELECT * FROM `accounts` WHERE `email` = :email 
         AND `password` = :password";
@@ -29,8 +27,8 @@ function login($email, $password){
     return $accounts[0]['id'];
 
 }
-// FUnction that retrieves a user ID when given an email for the account
 
+// FUnction that retrieves a user ID when given an email for the account
 function get_username($userid){
     global $db;
     $query = 'SELECT fname, lname  FROM accounts WHERE id=:userid';
@@ -46,7 +44,6 @@ function get_username($userid){
 
 function register_newUser($email, $firstName, $lastName, $birthday, $password){
     global $db;
-
     $query = 'INSERT INTO accounts(email, fname, lname, birthday, password) 
     VALUES 
     (:email, :fname, :lname, :birthday, :password)';
