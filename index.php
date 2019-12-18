@@ -6,9 +6,6 @@ include('views/header.php');
 
 session_start();
 $_SESSION['email'] = $aEmail;
-
-
-
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -193,6 +190,7 @@ switch ($action) {
             $questions = all_users_questions($userId);
             include('views/all_questions.php');
         }
+        break;
     }
    /* case 'view_question':
     {
@@ -222,9 +220,14 @@ switch ($action) {
             include('views/single_display.php');
             //header("Location: .?action=display_users&userId=$userId&questionId=$questions");
         }
+        break;
     }
-
-
+    case 'logout':
+    {
+        session_destroy();
+            header('Location: .');
+        break;
+    }
     default:
         {
         $error = 'Unknown Action';

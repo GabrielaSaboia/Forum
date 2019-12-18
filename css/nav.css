@@ -23,6 +23,10 @@ a{
     width: 160px;
     display: inline;
 }
+.left{
+    display: flex;
+    justify-content: space-between;
+}
 @media only screen and (max-width: 576px){
 
     .logo-img img{
