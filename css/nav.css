@@ -3,19 +3,17 @@ nav{
     box-shadow: 0 0 3px #848484;
 }
 
-ul{
-
-}
 li{
     display: inline;
     padding:  2vw;
     color: #8E3057;
 }
+
 a{
     color: black;
 }
+
 .where{
-    float: left;
 }
 
 /** logo in navigation bar**/
@@ -23,17 +21,20 @@ a{
     width: 160px;
     display: inline;
 }
-.left{
+.placement{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 @media only screen and (max-width: 576px){
-
     .logo-img img{
         width: 15%;
     }
     .nav-logo img{
         width: 160px;
     }
+}
 
+nav li.btn{
+    padding: 1px 8px;
 }
